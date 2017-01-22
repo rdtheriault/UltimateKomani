@@ -6,11 +6,11 @@
     </head>
     <body>
         
-        <select id="choice">
+       <select id="choice">
             <option value="star">Shooting Star</option>
             <option value="hide">Delete</option>
-            <option value=""></option>
-            <option value=""></option>
+            <option value="rainSnow">Make it "snow"</option>
+            <option value="rainLeaf">Make it "leaf"</option>
             <option value=""></option>
         </select>
         <script>
@@ -26,6 +26,12 @@
                 }
                 else if ($selection === "hide"){
     	            hideFun();
+                }
+                else if ($selection === "rainSnow"){
+    	            rain("snow");
+                }
+                else if ($selection === "rainLeaf"){
+    	            rain("leaf");
                 }
                 else {
                     window.alert("Konami accepted");
