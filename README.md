@@ -15,4 +15,4 @@ The test.html can be used to test the codes on your server
 
 
 
-More info to come
+More info to come - Testing is happening on Cloud 9 currently
