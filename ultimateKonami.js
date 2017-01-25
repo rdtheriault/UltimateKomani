@@ -40,9 +40,11 @@ Change the function to rain("pictureName");
 Makes the cooresponding picture "rain" down. Replace picturename with leaf, snow, jack, turkey, or ornamate.
 
 ##Clippy
-Change the function to agentz.show();clippyCSS();    (yes both functions, the second creates the CSS after the elements are created)
+Change the function to:
 
-Makes Clippy, you can scroll down to change the character from Clippy to others in the scripts settings.
+clippy.load('Clippy', function(agent) {agent.show();clippyCSS();}); (yes all of that, only loads when code is entered and creates the CSS after the elements are created)
+
+Makes Clippy, you can scroll down to change the character from Clippy to others in the scripts settings (just change 'Clippy').
 
 */
 
@@ -51,7 +53,14 @@ Makes Clippy, you can scroll down to change the character from Clippy to others 
 
 
 ////---START "SHOW PIC"---////
+function showPic(){
+    var width = "850px";
+    var picLoc = "http://www.sagefirellc.com/Pictures/SageFireLLC_Big.png";
+    //<div id="bacon" style="display:none; position:fixed; top:0px; left:300px; width:747px; height:1328px; z-index:999000;"><img src="http://www.sagefirellc.com/images/bacon.jpg" style="witdh:100%;" /></div>
 
+    jQuery("<div>").attr("id","showPicPic").attr("width",width).css("position","fixed").css("top","50px").css("left","100px").css("z-index","999000").appendTo("body");
+    jQuery("<img>").attr("src",picLoc).attr("width","100%").appendTo("#showPicPic");
+}
 ////---END "SHOW PIC"---////
 
 
@@ -1098,9 +1107,9 @@ clippy.Queue.prototype = {
 //gets it started without activating the script before Konami
 var agentz;
 //change 'Clippy' to get a different character 'Merlin' 'Rover' 'Links'
-clippy.load('Clippy', function(agent) {
-    			agentz = agent;
-});
+//clippy.load('Clippy', function(agent) {
+    			//agentz = agent;
+//});
 
 function clippyCSS() {
   //trying to not need the css file
