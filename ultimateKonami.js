@@ -46,27 +46,71 @@ clippy.load('Clippy', function(agent) {agent.show();clippyCSS();}); (yes all of 
 
 Makes Clippy, you can scroll down to change the character from Clippy to others in the scripts settings (just change 'Clippy').
 
+##Show Pic
+Change the function to showPic("http://piclocation.com/pic.png");
+
+Make sure to change the width to what you want it to be
+
+
+
 */
 
 
 
 
 
-////---START "SHOW PIC"---////
-function showPic(){
-    var width = "850px";
-    var picLoc = "http://www.sagefirellc.com/Pictures/SageFireLLC_Big.png";
-    //<div id="bacon" style="display:none; position:fixed; top:0px; left:300px; width:747px; height:1328px; z-index:999000;"><img src="http://www.sagefirellc.com/images/bacon.jpg" style="witdh:100%;" /></div>
 
-    jQuery("<div>").attr("id","showPicPic").attr("width",width).css("position","fixed").css("top","50px").css("left","100px").css("z-index","999000").appendTo("body");
-    jQuery("<img>").attr("src",picLoc).attr("width","100%").appendTo("#showPicPic");
+
+
+
+
+
+////---START "SHOW PIC"---////
+var showPicCounter = 0;
+function showPic(userPic){
+    ///Settings///
+    
+        var widthz = "850px";//probably should change this
+        var timez = 5000;//5 seconds
+        var vert = "top"; //this and the next will put the pic in the top left you can change this to bottom and the next ot right if desired
+        var horz = "left";
+    
+    ///End Settings///
+    
+    var picLoc = "";
+    picLoc = userPic;
+   
+    if (showPicCounter == 0){
+        jQuery("<div>").attr("id","showPicPic").css("width",widthz).css("position","fixed").css(vert,"50px").css(horz,"50px").css("z-index","999000").appendTo("body");
+        jQuery("<img>").attr("src",picLoc).attr("width","100%").appendTo("#showPicPic");
+        showPicCounter = 1;
+        setTimeout(hidePic, timez);
+    }
+    else {
+        jQuery("#showPicPic").show();
+        setTimeout(hidePic, timez);
+    }
+}
+function hidePic(){
+    jQuery("#showPicPic").hide();
 }
 ////---END "SHOW PIC"---////
 
 
 
 ////---START "FOLLOW MOUSE"---////
-
+function followMouse(picLoc){
+    //Start location
+    var widthz = "50px";//probably should change this
+    var vert = "top"; //this and the next will put the pic in the top left you can change this to bottom and the next ot right if desired
+    var horz = "left";
+    jQuery("<div>").attr("id","showMovePic").css("width",widthz).css("position","fixed").css(vert,"50px").css(horz,"50px").css("z-index","999000").appendTo("body");
+    jQuery("<img>").attr("src",picLoc).attr("width","100%").appendTo("#showMovePic");
+    //follow it move
+	jQuery(document).mousemove(function(e){
+    	jQuery("#showMovePic").css({left:e.pageX+10, top:e.pageY+10});
+	});
+ }
 ////---END "FOLLOW MOUSE"---////
 
 
