@@ -6,13 +6,16 @@
          
     </head>
     <body>
-               
+
+        
         <select id="choice">
             <option value="star">Shooting Star</option>
             <option value="hide">Delete</option>
             <option value="rainSnow">Make it "snow"</option>
             <option value="rainLeaf">Make it "leaf"</option>
             <option value="clippy">Clippy</option>
+            <option value="showPic">Show Pic</option>
+            <option value="followMouse">Follow the Mouse</option>
             <option value=""></option>
         </select>
         <script>
@@ -36,7 +39,16 @@
     	            rain("leaf");
                 }
                 else if ($selection === "clippy"){
-    	            agentz.show();clippyCSS();
+                    clippy.load('Clippy', function(agent) {
+    			        agent.show();
+    			        clippyCSS();
+                    });
+                }
+                else if ($selection === "showPic"){
+    	            showPic("http://www.sagefirellc.com/Pictures/SageFireLLC_Big.png");
+                }
+                else if ($selection === "followMouse"){
+    	            followMouse("http://www.sagefirellc.com/Pictures/SageFireLLC_Big.png");
                 }
                 else {
                     window.alert("Konami accepted");
