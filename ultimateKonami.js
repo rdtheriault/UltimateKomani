@@ -15,14 +15,20 @@ You need the following four lines to run the code (and jQuery for most of them)
 We did our best to try to make sure this is all you need but there are a couple animations that need more that is annoted below.
 ```
 	<script src="ultimateKonami.js" type="text/javascript"></script>
-  var easter_egg = new Konami();
-	easter_egg.code = function() { functionGoesHere(); }
-	easter_egg.load();
+	<script>
+        var easter_egg = new Konami();
+    	easter_egg.code = function() { functionGoesHere(); }
+    	easter_egg.load();
+    </script>
 ```
-this will listen for the Komami Code
+this will listen for the Komami Code (if you don't want to customize you can use <script src="http://sagefirellc.com/images/ultimateKonami.js" type="text/javascript"></script>)
+Make sure to have jQuery above these codes!!!
 
 -Many scripts have customizability if desired
 -Some scripts require a couple extra files to be added, they are noted below.
+
+
+###Animations
 
 ##Shooting Star
 Change the function to whooosh();
@@ -51,7 +57,22 @@ Change the function to showPic("http://piclocation.com/pic.png");
 
 Make sure to change the width to what you want it to be
 
+##Color Loop
+Change the function to colorLoop();
 
+This changes the colors of all divs very spastically....then changes them back (for the most part)
+
+##Break Lights
+Change the function to goLights();
+
+OK, so this is the most complicated one, also, last I tested it does not work on WordPress
+If you uses https you will need to make a folder called lights and create the four files below. Otherwise you have to add
+```
+    <link rel="stylesheet" media="screen" href="http://sagefirellc.com/images/lights/lights.css" />
+	<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.6.0/build/yahoo-dom-event/yahoo-dom-event.js&2.6.0/build/animation/animation-min.js"></script>
+	<script type="text/javascript" src="http://sagefirellc.com/images/lights/sound.js"></script>
+	<script type="text/javascript" src="http://sagefirellc.com/images/lights/lights.js"></script>
+```
 
 */
 
@@ -67,8 +88,6 @@ var arrayLoop= [];
 function colorLoop(){
 
 	var time = 500;
-	
-    
 	for (var i=0;i<100;i++)
 	{
 	    time += 100;
@@ -79,17 +98,17 @@ function colorLoop(){
 }
 
 function changeColor(){
-    $( "div" ).each(function( i,e) {
-			var holder = $(e).css('backgroundColor');
+    jQuery( "div" ).each(function( i,e) {
+			var holder = jQuery(e).css('backgroundColor');
 			arrayLoop.push(holder);//need to fix to not do this for every for loop
 			getColor();
-			$(e).css('backgroundColor',colorz);
+			jQuery(e).css('backgroundColor',colorz);
 	});
 }
 
 function clearLoop() {
-    $( "div" ).each(function( i,e ) {
-		$(e).css('backgroundColor',arrayLoop[i]);
+    jQuery( "div" ).each(function( i,e ) {
+		jQuery(e).css('backgroundColor',arrayLoop[i]);
 	});
 }
 
@@ -125,7 +144,6 @@ function getColor() {
 			counterLoop = 0;
 		}
 }
-
 ////---END "COLOR LOOP"---////
 
 
@@ -177,6 +195,25 @@ function followMouse(picLoc){
 	});
  }
 ////---END "FOLLOW MOUSE"---////
+
+
+
+////---START "LIGHTS"---////
+function goLights() {
+    jQuery("<div>").attr("id","lights").appendTo("body");
+    soundManager.setup({
+	  flashVersion: 9,
+	  preferFlash: false,
+	  url: 'http://sagefirellc.com/images/lights/',
+	  onready: function() {
+	    smashInit();
+	  },
+	  ontimeout: function() {
+	    smashInit();
+	  }
+    });
+}
+////---END "LIGHTS"---////
 
 
 
