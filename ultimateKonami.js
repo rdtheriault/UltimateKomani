@@ -59,9 +59,74 @@ Make sure to change the width to what you want it to be
 
 
 
+////---START "COLOR LOOP"---////
+var colorz;
+var counterLoop = 0;
+var arrayLoop= [];
 
+function colorLoop(){
 
+	var time = 500;
+	
+    
+	for (var i=0;i<100;i++)
+	{
+	    time += 100;
+		var timer = setTimeout(changeColor,time);
+	}
+    time += 100;
+	var timer2 = setTimeout(clearLoop,time);
+}
 
+function changeColor(){
+    $( "div" ).each(function( i,e) {
+			var holder = $(e).css('backgroundColor');
+			arrayLoop.push(holder);//need to fix to not do this for every for loop
+			getColor();
+			$(e).css('backgroundColor',colorz);
+	});
+}
+
+function clearLoop() {
+    $( "div" ).each(function( i,e ) {
+		$(e).css('backgroundColor',arrayLoop[i]);
+	});
+}
+
+function getColor() {
+	
+	if (counterLoop == 0)
+		{
+			colorz = '#6699FF';
+			counterLoop++;
+		}
+		else if (counterLoop == 1)
+		{
+			colorz = '#FF9933';
+			counterLoop++;
+		}
+		else if (counterLoop == 2)
+		{
+			colorz = '#FFFF66';
+			counterLoop++;
+		}
+		else if (counterLoop == 3)
+		{
+			colorz = '#99CC66';
+			counterLoop++;
+		}
+		else if (counterLoop == 4)
+		{
+			colorz = '#66FF99';
+			counterLoop = 0;
+		}
+		else if (counterLoop == 5)
+		{
+			counterLoop = 0;
+		}
+}
+
+////---END "COLOR LOOP"---////
 
 
 
