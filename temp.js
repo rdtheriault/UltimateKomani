@@ -1,3 +1,30 @@
+<style>
+        .beard {
+              	background: black;
+         		width: 5px;
+         		height: 5px;
+         		position: absolute;
+         		border-radius: 2px;
+         		top: 80px;
+         		left: 15px;
+         	}
+        </style> 
+var face = document.getElementById("face");
+    // 2. Define the function that will respond to the event.
+    var onMouseMove = function(e) {
+        console.log(e);
+        document.getElementById("message").textContent += "mooove ";         var beard = document.createElement("div");
+        beard.className = "beard";
+        document.body.appendChild(beard);
+        beard.style.top = e.clientY + "px";
+        beard.style.left = e.clientX + "px";
+        
+    };
+    // 3. Add the event listener for the element and function
+    face.addEventListener("mousemove", onMouseMove);
+
+
+
 //Compilation
 
 /*
