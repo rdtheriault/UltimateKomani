@@ -179,7 +179,104 @@ function hidePic(){
 }
 ////---END "SHOW PIC"---////
 
+////---START "DRAW ON ME"---////
+var onMouseMoveEgg = function(e) {       
+	var easterEggDraw = document.createElement("div");
+	easterEggDraw.style.position = "absolute";
+	easterEggDraw.style.background = "black";//change depending on site
+	easterEggDraw.style.width = "10px";
+	easterEggDraw.style.height = "10px";
+	easterEggDraw.style.borderRadius = "4px";
+	easterEggDraw.style.top = e.clientY + "px";
+	easterEggDraw.style.left = e.clientX + "px";
+	document.body.appendChild(easterEggDraw);
+};
+function createDrawingEasterEgg(){
+	document.body.addEventListener("mousemove", onMouseMoveEgg);
+}
+////--END "DRAW ON ME"---////
 
+////---START "DRAW ON ME EVIL"---////
+var colorz;
+var counterLoop = 0;
+var arrayLoop= [];
+
+function colorLoop(){
+
+	var time = 500;
+	for (var i=0;i<100;i++)
+	{
+	    time += 100;
+		var timer = setTimeout(changeColor,time);
+	}
+    time += 100;
+	var timer2 = setTimeout(clearLoop,time);
+}
+
+function changeColor(){
+    jQuery( "div" ).each(function( i,e) {
+			var holder = jQuery(e).css('backgroundColor');
+			arrayLoop.push(holder);//need to fix to not do this for every for loop
+			getColor();
+			jQuery(e).css('backgroundColor',colorz);
+	});
+}
+
+function clearLoop() {
+    jQuery( "div" ).each(function( i,e ) {
+		jQuery(e).css('backgroundColor',arrayLoop[i]);
+	});
+}
+
+function getColor() {
+	
+	if (counterLoop == 0)
+		{
+			colorz = '#6699FF';
+			counterLoop++;
+		}
+		else if (counterLoop == 1)
+		{
+			colorz = '#FF9933';
+			counterLoop++;
+		}
+		else if (counterLoop == 2)
+		{
+			colorz = '#FFFF66';
+			counterLoop++;
+		}
+		else if (counterLoop == 3)
+		{
+			colorz = '#99CC66';
+			counterLoop++;
+		}
+		else if (counterLoop == 4)
+		{
+			colorz = '#66FF99';
+			counterLoop = 0;
+		}
+		else if (counterLoop == 5)
+		{
+			counterLoop = 0;
+		}
+}
+
+var onMouseMoveEgg = function(e) {       
+	var easterEggDraw = document.createElement("div");
+	easterEggDraw.style.position = "absolute";
+	easterEggDraw.style.background = "black";//change depending on site
+	easterEggDraw.style.width = "10px";
+	easterEggDraw.style.height = "10px";
+	easterEggDraw.style.borderRadius = "4px";
+	easterEggDraw.style.top = e.clientY + "px";
+	easterEggDraw.style.left = e.clientX + "px";
+	document.body.appendChild(easterEggDraw);
+};
+function createDrawingEasterEgg(){
+	document.body.addEventListener("mousemove", onMouseMoveEgg);
+	setTimeout(colorLoop,5000);
+}
+////--END "DRAW ON ME EVIL"---////
 
 ////---START "FOLLOW MOUSE"---////
 function followMouse(picLoc){
